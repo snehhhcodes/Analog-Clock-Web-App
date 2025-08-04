@@ -11,7 +11,7 @@ Features a dreamy scenery background, smooth hand movements, and dynamically ali
 - **JavaScript (ES6)** – Real-time clock functionality and dynamic number placement
 
 ##  Preview
-![Clock Preview](Preview.png)
+![Clock Preview](/assets/Preview.png)
 
 ##  How to Run Locally
 1. Clone this repository:
