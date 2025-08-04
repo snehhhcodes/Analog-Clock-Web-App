@@ -3,12 +3,8 @@
 A minimal pastel-themed analog clock web application built with **HTML**, **CSS**, and **JavaScript**.  
 Features a dreamy scenery background, smooth hand movements, and dynamically aligned clock numbers for a perfect circular layout.
 
-##  Preview
-![Clock Preview](Preview.png)
-
-
 ##  Live Demo
-[**View on GitHub Pages**]([https://snehhhcodes.github.io/Analog-Clock-Web-App/])
+[**View on GitHub Pages**](https://snehhhcodes.github.io/Analog-Clock-Web-App/)
 
 
 ## Technologies Used
@@ -16,6 +12,8 @@ Features a dreamy scenery background, smooth hand movements, and dynamically ali
 - **CSS3** – Styling and pastel scenery background
 - **JavaScript (ES6)** – Real-time clock functionality and dynamic number placement
 
+##  Preview
+![Clock Preview](Preview.png)
 
 ##  How to Run Locally
 1. Clone this repository:
