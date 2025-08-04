@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analog Clock Web App</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(to top, #b3e5fc 70%, #e1f5fe 100%);
+        overflow: hidden;
+        position: relative;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Clouds */
+    .cloud {
+        position: absolute;
+        background: #fff;
+        border-radius: 50%;
+        opacity: 0.8;
+    }
+    .cloud::before, .cloud::after {
+        content: '';
+        position: absolute;
+        background: #fff;
+        border-radius: 50%;
+    }
+    .cloud1 { width: 120px; height: 60px; top: 50px; left: 20%; }
+    .cloud1::before { width: 80px; height: 80px; top: -20px; left: -40px; }
+    .cloud1::after { width: 80px; height: 80px; top: -20px; left: 60px; }
+
+    .cloud2 { width: 150px; height: 70px; top: 120px; right: 15%; }
+    .cloud2::before { width: 100px; height: 100px; top: -20px; left: -50px; }
+    .cloud2::after { width: 100px; height: 100px; top: -20px; left: 80px; }
+
+    /* Hills / Grass */
+    .hill {
+        position: absolute;
+        bottom: 0;
+        width: 150%;
+        height: 300px;
+        background: #a5d6a7;
+        border-radius: 50% 50% 0 0;
+        left: -25%;
+    }
+
+    /* Clock */
+    .clock {
+        width: 350px;
+        height: 350px;
+        background: #e0f7fa;
+        border-radius: 50%;
+        border: 10px solid #b2ebf2;
+        position: relative;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        z-index: 10;
+    }
+
+    .center-point {
+        width: 14px;
+        height: 14px;
+        background: #ffeb3b;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+    }
+
+    .hand {
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        transform-origin: bottom center;
+        transform: translateX(-50%);
+        border-radius: 5px;
+        box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    }
+
+    .hour {
+        width: 8px;
+        height: 80px;
+        background: #ffffff;
+        z-index: 3;
+    }
+
+    .minute {
+        width: 5px;
+        height: 115px;
+        background: #ffffff;
+        z-index: 2;
+    }
+
+    .second {
+        width: 2px;
+        height: 135px;
+        background: #ffeb3b;
+        z-index: 1;
+    }
+
+    .number {
+        position: absolute;
+        text-align: center;
+        font-size: 1.3rem;
+        color: #607d8b;
+        font-weight: bold;
+        transform: translate(-50%, -50%);
+    }
+</style>
+</head>
+<body>
+
+<!-- Background Elements -->
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="hill"></div>
+
+<div class="clock" id="clock">
+    <!-- Numbers will be generated via JS -->
+    <div class="center-point"></div>
+    <div class="hand hour" id="hour-hand"></div>
+    <div class="hand minute" id="minute-hand"></div>
+    <div class="hand second" id="second-hand"></div>
+</div>
+
+<script>
+    // Generate numbers dynamically in a circle
+    const clock = document.getElementById('clock');
+    const clockSize = 350;
+    const radius = clockSize / 2 - 30; // Distance from center
+
+    for (let num = 1; num <= 12; num++) {
+        const numberElement = document.createElement('div');
+        numberElement.className = 'number';
+        numberElement.innerText = num;
+
+        const angle = (num - 3) * (Math.PI * 2) / 12;
+        const x = clockSize / 2 + radius * Math.cos(angle);
+        const y = clockSize / 2 + radius * Math.sin(angle);
+
+        numberElement.style.left = `${x}px`;
+        numberElement.style.top = `${y}px`;
+
+        clock.appendChild(numberElement);
+    }
+
+    // Clock hands movement
+    function updateClock() {
+        const now = new Date();
+
+        const seconds = now.getSeconds();
+        const minutes = now.getMinutes();
+        const hours = now.getHours();
+
+        const secondDegree = seconds * 6;
+        const minuteDegree = minutes * 6 + seconds * 0.1;
+        const hourDegree = (hours % 12) * 30 + minutes * 0.5;
+
+        document.getElementById('second-hand').style.transform = `translateX(-50%) rotate(${secondDegree}deg)`;
+        document.getElementById('minute-hand').style.transform = `translateX(-50%) rotate(${minuteDegree}deg)`;
+        document.getElementById('hour-hand').style.transform = `translateX(-50%) rotate(${hourDegree}deg)`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
+</body>
+</html>
