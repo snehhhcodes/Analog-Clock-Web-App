@@ -8,7 +8,7 @@ Features a dreamy scenery background, smooth hand movements, and dynamically ali
 
 
 ##  Live Demo
-[**View on GitHub Pages**](https://yourusername.github.io/analog-clock-web-app/)
+[**View on GitHub Pages**]([https://snehhhcodes.github.io/Analog-Clock-Web-App/])
 
 
 ## Technologies Used
